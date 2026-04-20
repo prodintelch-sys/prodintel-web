@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prodintel | Dashboards, planificación y control para operaciones industriales</title>
+  <meta name="description" content="Prodintel impulsa la gestión industrial con dashboards, planificación de producción, control de inventarios, costos y mejora operacional." />
+  <style>
+    :root {
+      --bg: #07111d;
+      --bg-2: #0c1728;
+      --surface: rgba(255,255,255,0.06);
+      --surface-strong: rgba(255,255,255,0.1);
+      --line: rgba(255,255,255,0.12);
+      --text: #f4f8fd;
+      --muted: #b7c3d5;
+      --primary: #35a4ff;
+      --primary-2: #76ddff;
+      --accent: #0fd38a;
+      --accent-2: #7ef0c2;
+      --warning: #ffd166;
+      --radius: 24px;
+      --shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--text);
+
+  background:
+    linear-gradient(rgba(6,14,24,0.82), rgba(11,22,38,0.92)),
+    url("dashboard-bg.png");
+
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    .container {
+      width: min(calc(100% - 32px), var(--max));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(14px);
+      background: rgba(6,14,24,0.72);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-weight: 800;
+      letter-spacing: 0.2px;
+    }
+
+    .brand-logo {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      display: grid;
+      place-items: center;
+      color: #07111d;
+      font-weight: 900;
+      box-shadow: 0 16px 36px rgba(53,164,255,0.26);
+    }
+
+    .brand-text small {
+      display: block;
+      color: var(--muted);
+      font-weight: 500;
+      font-size: 11px;
+      margin-top: 2px;
+    }
+
+    .menu {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .menu a:hover { color: white; }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 22px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      font-weight: 800;
+      transition: 0.25s ease;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .btn:hover { transform: translateY(-2px); }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      color: #07111d;
+      box-shadow: 0 14px 32px rgba(53,164,255,0.24);
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.03);
+      border-color: var(--line);
+      color: var(--text);
+    }
+
+    .mobile-toggle {
+      display: none;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.04);
+      color: white;
+      padding: 10px 12px;
+      border-radius: 12px;
+    }
+
+    .hero {
+      backdrop-filter: blur(1px);
+      padding: 76px 0 56px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 34px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(53,164,255,0.1);
+      border: 1px solid rgba(53,164,255,0.26);
+      color: #d7edff;
+      font-size: 13px;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      margin: 0 0 18px;
+      font-size: clamp(2.4rem, 5vw, 4.7rem);
+      line-height: 0.98;
+      letter-spacing: -1.8px;
+      max-width: 760px;
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 1.06rem;
+      line-height: 1.75;
+      margin: 0 0 26px;
+      max-width: 700px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .trust-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      color: var(--muted);
+      font-size: 0.92rem;
+      margin-top: 18px;
+    }
+
+    .trust-pill {
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--line);
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    .stat {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.45rem;
+      margin-bottom: 6px;
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: 0.94rem;
+      line-height: 1.45;
+    }
+
+    .hero-panel {
+      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      padding: 22px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-panel::after {
+      content: "";
+      position: absolute;
+      width: 260px;
+      height: 260px;
+      right: -90px;
+      top: -70px;
+      background: radial-gradient(circle, rgba(118,221,255,0.16), transparent 70%);
+      pointer-events: none;
+    }
+
+    .dashboard-shell {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      gap: 14px;
+    }
+
+    .dashboard-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .widget {
+      background: rgba(7,17,29,0.88);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 22px;
+      padding: 18px;
+      min-height: 142px;
+    }
+
+    .widget h3 {
+      margin: 0 0 8px;
+      font-size: 0.96rem;
+      color: #e9f2fd;
+    }
+
+    .widget .value {
+      font-size: 1.8rem;
+      font-weight: 900;
+      margin-bottom: 6px;
+    }
+
+    .widget .desc {
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.55;
+    }
+
+    .bars {
+      height: 118px;
+      display: flex;
+      align-items: end;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .bar {
+      flex: 1;
+      border-radius: 14px 14px 5px 5px;
+      background: linear-gradient(180deg, var(--primary-2), var(--primary));
+    }
+
+    .line-chart {
+      height: 130px;
+      border-radius: 16px;
+      margin-top: 10px;
+      background: linear-gradient(180deg, rgba(53,164,255,0.08), transparent 90%);
+      overflow: hidden;
+    }
+
+    .line-chart svg { width: 100%; height: 100%; }
+
+    section { padding: 48px 0; }
+
+    .section-head {
+      margin-bottom: 28px;
+    }
+
+    .section-head h2 {
+      margin: 0 0 10px;
+      font-size: clamp(1.8rem, 4vw, 2.7rem);
+      letter-spacing: -0.8px;
+    }
+
+    .section-head p {
+      margin: 0;
+      max-width: 780px;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .icon-box {
+      width: 54px;
+      height: 54px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 16px;
+      background: linear-gradient(135deg, rgba(53,164,255,0.22), rgba(15,211,138,0.24));
+      font-size: 22px;
+    }
+
+    .card h3 {
+      margin: 0 0 10px;
+      font-size: 1.06rem;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.65;
+      font-size: 0.97rem;
+    }
+
+    .service-list {
+      display: grid;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .service-list span {
+      display: block;
+      padding: 10px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.03);
+      color: #dbe7f6;
+      font-size: 0.93rem;
+    }
+
+    .feature-box {
+      display: grid;
+      gap: 14px;
+    }
+
+    .feature-item {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--line);
+    }
+
+    .feature-item b {
+      display: block;
+      margin-bottom: 4px;
+      color: #ecf4ff;
+    }
+
+    .feature-item span {
+      color: var(--muted);
+      line-height: 1.5;
+      font-size: 0.95rem;
+    }
+
+    .case-card {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .kpi-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .mini-kpi {
+      padding: 14px;
+      background: rgba(255,255,255,0.04);
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .mini-kpi strong {
+      display: block;
+      font-size: 1.15rem;
+      margin-bottom: 4px;
+    }
+
+    .mini-kpi span {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .process-card {
+      position: relative;
+      padding-top: 18px;
+    }
+
+    .step {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: #07111d;
+      font-weight: 900;
+      margin-bottom: 16px;
+    }
+
+    .plans {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .plan {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .plan.highlight {
+      border-color: rgba(118,221,255,0.4);
+      transform: translateY(-4px);
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 800;
+      background: rgba(53,164,255,0.12);
+      border: 1px solid rgba(53,164,255,0.22);
+      color: #d9f0ff;
+      margin-bottom: 16px;
+    }
+
+    .price {
+      font-size: 2rem;
+      font-weight: 900;
+      margin: 8px 0;
+    }
+
+    .plan ul {
+      margin: 16px 0 0;
+      padding-left: 18px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .industries {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .industry {
+      padding: 12px 16px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.03);
+      color: #d8e6f6;
+      font-size: 0.94rem;
+    }
+
+    .contact-box {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 22px;
+      align-items: stretch;
+    }
+
+    .contact-info,
+    .contact-form {
+      background: linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.04));
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      padding: 26px;
+      box-shadow: var(--shadow);
+    }
+
+    .contact-points {
+      display: grid;
+      gap: 14px;
+      margin-top: 20px;
+    }
+
+    .contact-point {
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--line);
+    }
+
+    .contact-point b {
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    form {
+      display: grid;
+      gap: 14px;
+    }
+
+    .field-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(7,17,29,0.86);
+      color: white;
+      border-radius: 16px;
+      padding: 14px 16px;
+      font: inherit;
+      outline: none;
+    }
+
+    textarea {
+      min-height: 138px;
+      resize: vertical;
+    }
+
+    input:focus, textarea:focus, select:focus {
+      border-color: rgba(118,221,255,0.55);
+      box-shadow: 0 0 0 4px rgba(53,164,255,0.10);
+    }
+
+    .cta-band {
+      padding-top: 10px;
+    }
+
+    .cta-box {
+      background: linear-gradient(135deg, rgba(53,164,255,0.16), rgba(15,211,138,0.14));
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 30px;
+      padding: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .cta-box h2 { margin: 0 0 10px; }
+    .cta-box p { margin: 0; color: var(--muted); line-height: 1.7; max-width: 760px; }
+
+    .footer {
+      margin-top: 52px;
+      border-top: 1px solid var(--line);
+      padding: 26px 0 40px;
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .footer-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 1080px) {
+      .hero-grid,
+      .grid-4,
+      .grid-3,
+      .grid-2,
+      .plans,
+      .contact-box,
+      .dashboard-row {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .grid-4 { grid-template-columns: 1fr 1fr; }
+      .grid-3 { grid-template-columns: 1fr 1fr; }
+      .plans { grid-template-columns: 1fr; }
+      .contact-box { grid-template-columns: 1fr; }
+      .hero-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 760px) {
+      body {
+        background-size: contain;
+        background-position: center top;
+        background-attachment: scroll;
+      }
+
+      .hero-centered {
+        min-height: 72vh;
+        padding: 96px 18px 56px;
+        background:
+          linear-gradient(rgba(6,14,24,0.68), rgba(11,22,38,0.86)),
+          url("/dashboard-bg.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center top;
+        background-attachment: scroll;
+      }
+
+      .mobile-toggle { display: inline-flex; }
+      .nav-actions .btn { display: none; }
+
+      .menu {
+        position: absolute;
+        top: 78px;
+        right: 16px;
+        width: min(260px, calc(100% - 32px));
+        display: none;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
+        padding: 16px;
+        border-radius: 18px;
+        background: #0b1626;
+        border: 1px solid var(--line);
+        box-shadow: var(--shadow);
+      }
+
+      .menu.active { display: flex; }
+
+      .hero,
+      section { padding: 38px 0; }
+
+      .hero-stats,
+      .dashboard-row,
+      .grid-4,
+      .grid-3,
+      .grid-2,
+      .field-grid,
+      .cta-box,
+      .kpi-row {
+        grid-template-columns: 1fr;
+      }
+
+      .cta-box {
+        display: grid;
+        padding: 24px;
+      }
+
+      h1 { font-size: 2.45rem; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <a href="#inicio" class="brand">
+        <img src="logo-prodintel.png" alt="Logo Prodintel" style="width:48px;height:48px;border-radius:14px;object-fit:cover;box-shadow:0 16px 36px rgba(53,164,255,0.26);">
+        <div class="brand-text">
+          Prodintel
+          <small>Industrial Performance System</small>
+        </div>
+      </a>
+
+      <nav class="menu" id="menu">
+        <a href="#servicios">Servicios</a>
+        <a href="#soluciones">Soluciones</a>
+        <a href="#proceso">Proceso</a>
+        <a href="#planes">Planes</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="#contacto" class="btn btn-secondary">Hablemos</a>
+        <a href="#contacto" class="btn btn-primary">Solicitar demo</a>
+        <button class="mobile-toggle" id="mobileToggle">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+  <style>
+    .hero-centered {
+      min-height: 88vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 20px 80px;
+      background:
+        linear-gradient(rgba(6,14,24,0.65), rgba(11,22,38,0.88)),
+        url("/dashboard-bg.png");
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+    }
+
+    .hero-box {
+      max-width: 900px;
+    }
+
+    .hero-box h1 {
+      font-size: clamp(2.8rem, 6vw, 4.8rem);
+      line-height: 1.05;
+      margin-bottom: 18px;
+      letter-spacing: -1.6px;
+    }
+
+    .hero-box p {
+      font-size: 1.15rem;
+      color: var(--muted);
+      margin-bottom: 32px;
+      line-height: 1.7;
+    }
+
+    .hero-main-btn {
+      font-size: 1.05rem;
+      padding: 18px 36px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #3aa6ff, #76ddff);
+      border: none;
+      font-weight: 800;
+      color: #07111d;
+      box-shadow: 0 18px 45px rgba(58,166,255,0.35);
+      cursor: pointer;
+      transition: .25s ease;
+    }
+
+    .hero-main-btn:hover {
+      transform: translateY(-3px);
+    }
+  </style>
+
+  <div class="hero-centered">
+    <div class="hero-box">
+      <h1>Control de gestión industrial, producción y dashboards ejecutivos</h1>
+
+      <p>
+        Optimizamos la producción, inventarios y KPIs mediante dashboards ejecutivos,
+        planificación operativa y control de gestión para empresas industriales.
+      </p>
+
+      <a href="#contacto">
+        <button class="hero-main-btn">Solicitar reunión</button>
+      </a>
+    </div>
+  </div>
+</section>
+
+    <section id="servicios">
+      <div class="container">
+        <div class="section-head">
+          <h2>Servicios principales</h2>
+          <p>
+            Soluciones pensadas para empresas que necesitan ordenar información, medir mejor su desempeño y transformar datos en decisiones operativas concretas.
+          </p>
+        </div>
+
+        <div class="grid-4">
+          <article class="card">
+            <div class="icon-box">📊</div>
+            <h3>Dashboards ejecutivos</h3>
+            <p>Paneles claros para visualizar producción, ventas, costos, inventario, eficiencia y cumplimiento.</p>
+          </article>
+
+          <article class="card">
+            <div class="icon-box">🏭</div>
+            <h3>Control de producción</h3>
+            <p>Seguimiento de órdenes, rendimiento por línea, productividad, tiempos muertos y desempeño diario.</p>
+          </article>
+
+          <article class="card">
+            <div class="icon-box">📦</div>
+            <h3>Inventarios y cobertura</h3>
+            <p>Control de stock, productos críticos, días de cobertura, faltantes y apoyo al abastecimiento.</p>
+          </article>
+
+          <article class="card">
+            <div class="icon-box">⚙️</div>
+            <h3>Optimización operativa</h3>
+            <p>Identificación de pérdidas, cuellos de botella y oportunidades de mejora en planta y gestión.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="soluciones">
+      <div class="container grid-2">
+        <div>
+          <div class="section-head">
+            <h2>Qué podemos implementar</h2>
+            <p>
+              Desde un dashboard inicial hasta una estructura completa de control para producción, costos, inventarios y toma de decisiones.
+            </p>
+          </div>
+
+          <div class="service-list">
+            <span>Dashboard de producción y OEE</span>
+            <span>Plan maestro de producción</span>
+            <span>Control de inventario y cobertura</span>
+            <span>Automatización de reportes en Power BI</span>
+            <span>Análisis de costos por producto o proceso</span>
+            <span>Indicadores comerciales y presupuestarios</span>
+          </div>
+        </div>
+
+        <div class="card case-card">
+          <div class="section-head" style="margin-bottom:0;">
+            <h2>Enfoque simple, útil y ejecutivo</h2>
+            <p>No hacemos sistemas complejos por hacerlos. Construimos herramientas que realmente sirvan para gestionar.</p>
+          </div>
+          <div class="kpi-row">
+            <div class="mini-kpi">
+              <strong>KPIs</strong>
+              <span>Métricas útiles</span>
+            </div>
+            <div class="mini-kpi">
+              <strong>Datos</strong>
+              <span>Información ordenada</span>
+            </div>
+            <div class="mini-kpi">
+              <strong>Acción</strong>
+              <span>Mejora concreta</span>
+            </div>
+          </div>
+          <div class="feature-box">
+            <div class="feature-item">
+              <div>✅</div>
+              <div>
+                <b>Visibilidad real</b>
+                <span>La gerencia y la operación comparten una misma fuente de información.</span>
+              </div>
+            </div>
+            <div class="feature-item">
+              <div>✅</div>
+              <div>
+                <b>Decisiones más rápidas</b>
+                <span>Menos planillas dispersas y más foco en interpretar el negocio.</span>
+              </div>
+            </div>
+            <div class="feature-item">
+              <div>✅</div>
+              <div>
+                <b>Más orden y control</b>
+                <span>Se reduce la improvisación y mejora la disciplina de seguimiento.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="section-head">
+          <h2>Beneficios para tu empresa</h2>
+          <p>
+            La meta no es solo mostrar datos. La meta es mejorar el control, detectar desviaciones antes y generar una gestión más profesional.
+          </p>
+        </div>
+
+        <div class="grid-3">
+          <article class="card">
+            <div class="icon-box">🎯</div>
+            <h3>Mejor foco</h3>
+            <p>Sabes dónde mirar primero y qué área requiere atención inmediata.</p>
+          </article>
+          <article class="card">
+            <div class="icon-box">💰</div>
+            <h3>Mejor control de costos</h3>
+            <p>Detecta desvíos, consumos anormales y diferencias entre plan y realidad.</p>
+          </article>
+          <article class="card">
+            <div class="icon-box">⏱️</div>
+            <h3>Más velocidad de análisis</h3>
+            <p>Los reportes ya no dependen de horas consolidando planillas manuales.</p>
+          </article>
+        </div>
+
+        <div class="industries">
+          <div class="industry">Producción industrial</div>
+          <div class="industry">Manufactura</div>
+          <div class="industry">Logística interna</div>
+          <div class="industry">Control de planta</div>
+          <div class="industry">Abastecimiento</div>
+          <div class="industry">Gestión comercial</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="proceso">
+      <div class="container">
+        <div class="section-head">
+          <h2>Cómo trabajamos</h2>
+          <p>
+            Un proceso claro, ordenado y enfocado en resultados para implementar una solución con valor desde el principio.
+          </p>
+        </div>
+
+        <div class="grid-4">
+          <article class="card process-card">
+            <div class="step">1</div>
+            <h3>Diagnóstico</h3>
+            <p>Revisamos datos, reportes existentes, proceso operativo y necesidades del negocio.</p>
+          </article>
+          <article class="card process-card">
+            <div class="step">2</div>
+            <h3>Diseño</h3>
+            <p>Definimos indicadores, estructura visual, filtros y objetivos del panel o solución.</p>
+          </article>
+          <article class="card process-card">
+            <div class="step">3</div>
+            <h3>Implementación</h3>
+            <p>Desarrollamos dashboards, modelos y reportes automatizados con validación funcional.</p>
+          </article>
+          <article class="card process-card">
+            <div class="step">4</div>
+            <h3>Mejora continua</h3>
+            <p>Ajustamos la solución según los resultados, nuevas necesidades y madurez del negocio.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    
+
+    <section class="cta-band">
+      <div class="container">
+        <div class="cta-box">
+          <div>
+            <h2>¿Quieres que tu operación se vea tan bien como funciona?</h2>
+            <p>
+              Con una solución correcta, tu empresa puede tomar mejores decisiones, ordenar sus datos y hacer gestión real con información útil y oportuna.
+            </p>
+          </div>
+          <div style="display:flex; gap:12px; flex-wrap:wrap;">
+            <a href="#contacto" class="btn btn-primary">Agendar conversación</a>
+            <a href="https://wa.me/56984391753" target="_blank" class="btn btn-secondary">WhatsApp</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contacto">
+      <div class="container contact-box">
+        <div class="contact-info">
+          <div class="section-head" style="margin-bottom:0;">
+            <h2>Conversemos</h2>
+            <p>
+              Cuéntame qué estás necesitando: dashboard, control de producción, inventarios, costos o una solución más completa de gestión.
+            </p>
+          </div>
+
+          <div class="contact-points">
+            <div class="contact-point">
+              <b>Correo</b>
+              <span>prodintelch@gmail.com</span>
+            </div>
+            <div class="contact-point">
+              <b>WhatsApp</b>
+              <span>+56 9 8439 1753</span>
+            </div>
+            <div class="contact-point">
+              <b>Servicios</b>
+              <span>Dashboards, planificación, inventarios, costos, KPIs y mejora operacional.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-form">
+          <form>
+            <div class="field-grid">
+              <input type="text" placeholder="Nombre" />
+              <input type="text" placeholder="Empresa" />
+            </div>
+            <div class="field-grid">
+              <input type="email" placeholder="Correo electrónico" />
+              <input type="text" placeholder="Teléfono" />
+            </div>
+            <select>
+              <option>¿Qué necesitas?</option>
+              <option>Dashboard ejecutivo</option>
+              <option>Control de producción</option>
+              <option>Inventario y cobertura</option>
+              <option>Automatización de reportes</option>
+              <option>Otro</option>
+            </select>
+            <textarea placeholder="Cuéntame brevemente tu necesidad"></textarea>
+            <button class="btn btn-primary" type="submit">Enviar solicitud</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-row">
+      <div>© 2026 Prodintel. Todos los derechos reservados.</div>
+      <div>Dashboards · Producción · Inventarios · Costos · Power BI · Gestión industrial</div>
+    </div>
+  </footer>
+
+  <script>
+    const toggle = document.getElementById('mobileToggle');
+    const menu = document.getElementById('menu');
+
+    toggle.addEventListener('click', () => {
+      menu.classList.toggle('active');
+    });
+
+    document.querySelectorAll('.menu a').forEach(link => {
+      link.addEventListener('click', () => menu.classList.remove('active'));
+    });
+  </script>
+</body>
+</html>
