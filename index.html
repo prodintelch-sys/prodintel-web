@@ -23,12 +23,125 @@
       --radius:22px;
       --shadow:0 18px 50px rgba(0,0,0,.35);
     }
-    .mobile-dashboard{
+   .mobile-dashboard{
 
 padding:90px 0;
 
 }
+.timeline{
 
+position:relative;
+max-width:760px;
+margin:auto;
+display:flex;
+flex-direction:column;
+gap:32px;
+
+}
+
+.timeline::before{
+
+content:"";
+position:absolute;
+left:26px;
+top:0;
+bottom:0;
+width:2px;
+
+background:linear-gradient(
+180deg,
+rgba(57,167,255,.4),
+rgba(113,217,255,.2)
+);
+
+}
+
+.timeline-item{
+
+display:flex;
+gap:20px;
+align-items:flex-start;
+position:relative;
+
+}
+
+.timeline-icon{
+
+min-width:52px;
+height:52px;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+border-radius:16px;
+
+background:linear-gradient(
+135deg,
+rgba(57,167,255,.18),
+rgba(24,195,126,.18)
+);
+
+font-size:24px;
+
+box-shadow:0 10px 30px rgba(0,0,0,.3);
+
+z-index:2;
+
+}
+
+.timeline-content{
+
+background:rgba(255,255,255,.05);
+
+border:1px solid rgba(255,255,255,.08);
+
+padding:22px;
+
+border-radius:18px;
+
+backdrop-filter:blur(8px);
+
+flex:1;
+
+}
+
+.timeline-content h3{
+
+margin-bottom:10px;
+
+}
+
+.timeline-content p{
+
+color:var(--muted);
+margin-bottom:14px;
+
+}
+
+.timeline-content ul{
+
+list-style:none;
+padding:0;
+margin:0;
+display:grid;
+gap:8px;
+
+}
+
+.timeline-content li{
+
+padding:8px 12px;
+
+border-radius:10px;
+
+background:rgba(255,255,255,.04);
+
+border:1px solid rgba(255,255,255,.05);
+
+font-size:.9rem;
+
+}
 .mobile-grid{
 
 display:grid;
@@ -552,7 +665,25 @@ transform:translateY(-6px);
 
 grid-template-columns:1fr;
 text-align:center;
+.timeline{
 
+gap:26px;
+
+}
+
+.timeline::before{
+
+left:22px;
+
+}
+
+.timeline-icon{
+
+width:44px;
+height:44px;
+font-size:20px;
+
+}
 }
 
 .mobile-image img{
@@ -702,57 +833,101 @@ max-width:220px;
       </div>
       
       </section>
-    <section id="servicios">
-      <div class="container">
+      <section id="servicios">
+
+        <div class="container">
+        
         <div class="section-head">
-          <h2>Servicios principales</h2>
-          <p>
-            Soluciones visuales y accionables para mejorar el control operativo, ordenar la información y apoyar decisiones más rápidas.
-          </p>
+        
+        <h2>Servicios principales</h2>
+        
+        <p>
+        Soluciones claras para mejorar control operativo, producción e inventarios con dashboards ejecutivos.
+        </p>
+        
         </div>
-    
-        <div class="services-grid">
-          <article class="service-card">
-            <div class="service-icon">📊</div>
-            <h3>Dashboards ejecutivos</h3>
-            <p>
-              Diseñamos paneles claros para visualizar producción, costos, inventarios y desempeño en una sola vista.
-            </p>
-            <ul>
-              <li>KPIs operativos y ejecutivos</li>
-              <li>Visualización clara para gerencia</li>
-              <li>Diseño limpio y profesional</li>
-            </ul>
-          </article>
-    
-          <article class="service-card featured">
-            <div class="service-icon">🏭</div>
-            <h3>Control de producción</h3>
-            <p>
-              Seguimiento de eficiencia, OEE, cumplimiento del plan y foco en los indicadores que realmente mueven la operación.
-            </p>
-            <ul>
-              <li>Producción diaria y mensual</li>
-              <li>OEE, eficiencia y cumplimiento</li>
-              <li>Soporte visual para supervisión</li>
-            </ul>
-          </article>
-    
-          <article class="service-card">
-            <div class="service-icon">📦</div>
-            <h3>Inventarios y KPIs</h3>
-            <p>
-              Indicadores para controlar stock, cobertura, productos críticos y variables clave para decidir con anticipación.
-            </p>
-            <ul>
-              <li>Cobertura e inventario crítico</li>
-              <li>Apoyo a planificación y abastecimiento</li>
-              <li>Menos improvisación operativa</li>
-            </ul>
-          </article>
+        
+        <div class="timeline">
+        
+        <div class="timeline-item">
+        
+        <div class="timeline-icon">📊</div>
+        
+        <div class="timeline-content">
+        
+        <h3>Dashboards ejecutivos</h3>
+        
+        <p>
+        Paneles visuales para monitorear producción, inventarios, cumplimiento y desempeño en tiempo real.
+        </p>
+        
+        <ul>
+        
+        <li>KPIs operativos y ejecutivos</li>
+        <li>Visualización clara para gerencia</li>
+        <li>Integración con ERP o Excel</li>
+        
+        </ul>
+        
         </div>
-      </div>
-    </section>
+        
+        </div>
+        
+        
+        <div class="timeline-item">
+        
+        <div class="timeline-icon">🏭</div>
+        
+        <div class="timeline-content">
+        
+        <h3>Control de producción</h3>
+        
+        <p>
+        Seguimiento de eficiencia, OEE y cumplimiento del plan con indicadores accionables.
+        </p>
+        
+        <ul>
+        
+        <li>Producción diaria y mensual</li>
+        <li>Seguimiento de eficiencia</li>
+        <li>Apoyo a supervisión operativa</li>
+        
+        </ul>
+        
+        </div>
+        
+        </div>
+        
+        
+        <div class="timeline-item">
+        
+        <div class="timeline-icon">📦</div>
+        
+        <div class="timeline-content">
+        
+        <h3>Inventarios y KPIs</h3>
+        
+        <p>
+        Indicadores para controlar stock, cobertura e identificar productos críticos rápidamente.
+        </p>
+        
+        <ul>
+        
+        <li>Control de cobertura</li>
+        <li>Stock crítico</li>
+        <li>Apoyo a planificación</li>
+        
+        </ul>
+        
+        </div>
+        
+        </div>
+        
+        </div>
+        
+        </div>
+        
+        </section>
 
     <section id="valor">
       <div class="container">
