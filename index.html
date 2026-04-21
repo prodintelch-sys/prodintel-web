@@ -137,103 +137,87 @@
     }
 
     .hero{
-      min-height:86vh;
-      display:flex;
-      align-items:center;
-      text-align:center;
-    }
+  min-height:92vh;
+  display:flex;
+  align-items:center;
+  text-align:center;
+}
 
-    .hero-box{
-      max-width:980px;
-      margin:0 auto;
-      padding:80px 0 50px;
-    }
+.hero-box{
+  max-width:1080px;
+  margin:0 auto;
+  padding:72px 0 40px;
+}
 
-    .eyebrow{
-      display:inline-flex;
-      padding:10px 14px;
-      border-radius:999px;
-      background:rgba(57,167,255,.12);
-      border:1px solid rgba(57,167,255,.2);
-      color:#dcefff;
-      font-size:.88rem;
-      margin-bottom:18px;
-    }
+.eyebrow{
+  display:inline-flex;
+  padding:10px 15px;
+  border-radius:999px;
+  background:rgba(57,167,255,.12);
+  border:1px solid rgba(57,167,255,.2);
+  color:#dcefff;
+  font-size:.88rem;
+  margin-bottom:20px;
+}
 
-    .hero h1{
-      margin:0 0 18px;
-      font-size:clamp(2.6rem, 6vw, 5rem);
-      line-height:1.02;
-      letter-spacing:-1.7px;
-    }
+.hero h1{
+  margin:0 auto 18px;
+  max-width:920px;
+  font-size:clamp(2.8rem, 6vw, 5.3rem);
+  line-height:1.0;
+  letter-spacing:-1.9px;
+}
 
-    .hero p{
-      margin:0 auto 30px;
-      max-width:760px;
-      font-size:1.08rem;
-      line-height:1.7;
-      color:var(--muted);
-    }
+.hero p{
+  margin:0 auto 28px;
+  max-width:760px;
+  font-size:1.08rem;
+  line-height:1.75;
+  color:var(--muted);
+}
 
-    .hero-actions{
-      display:flex;
-      justify-content:center;
-      gap:14px;
-      flex-wrap:wrap;
-      margin-bottom:28px;
-    }
+.hero-actions{
+  display:flex;
+  justify-content:center;
+  gap:14px;
+  flex-wrap:wrap;
+  margin-bottom:34px;
+}
 
-    .hero-points{
-      display:flex;
-      flex-wrap:wrap;
-      justify-content:center;
-      gap:12px;
-      margin-bottom:10px;
-    }
+.hero-dashboard{
+  margin-top:18px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:16px;
+}
 
-    .hero-points span{
-      padding:10px 14px;
-      border-radius:999px;
-      background:rgba(255,255,255,.04);
-      border:1px solid rgba(255,255,255,.09);
-      color:var(--muted);
-      font-size:.92rem;
-    }
+.dashboard-label{
+  font-size:.84rem;
+  letter-spacing:.3px;
+  padding:8px 14px;
+  border-radius:999px;
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.1);
+  color:#dcefff;
+}
 
-    .hero-dashboard{
-      margin-top:42px;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      gap:16px;
-    }
+.hero-dashboard img{
+  width:100%;
+  max-width:1020px;
+  border-radius:24px;
+  box-shadow:
+    0 45px 120px rgba(0,0,0,.60),
+    0 0 0 1px rgba(255,255,255,.08);
+  transition:.35s ease;
+}
 
-    .dashboard-label{
-      font-size:.85rem;
-      letter-spacing:.4px;
-      padding:8px 14px;
-      border-radius:999px;
-      background:rgba(57,167,255,.12);
-      border:1px solid rgba(57,167,255,.25);
-      color:#dcefff;
-    }
-
-    .hero-dashboard img{
-      width:100%;
-      max-width:1000px;
-      border-radius:22px;
-      box-shadow:
-        0 60px 120px rgba(0,0,0,.65),
-        0 0 0 1px rgba(255,255,255,.08);
-      transition:.35s ease;
-    }
-
-    .hero-dashboard img:hover{
-      transform:translateY(-6px);
-      box-shadow:
-        0 80px 160px rgba(0,0,0,.8),
-        0 0 0 1px rgba(255,255,255,.12);
-    }
+.hero-dashboard img:hover{
+  transform:translateY(-5px);
+  box-shadow:
+    0 65px 140px rgba(0,0,0,.72),
+    0 0 0 1px rgba(255,255,255,.12);
+}
 
     section{
       padding:72px 0;
@@ -442,27 +426,36 @@
       }
 
       .hero{
-        min-height:auto;
-      }
+  min-height:auto;
+}
 
-      .hero-box{
-        padding:70px 0 30px;
-      }
+.hero-box{
+  padding:60px 0 24px;
+}
 
-      .hero-dashboard{
-        margin-top:30px;
-      }
+.hero h1{
+  font-size:clamp(2.2rem, 8vw, 3.3rem);
+  line-height:1.06;
+}
 
-      .hero-dashboard img{
-        max-width:100%;
-        border-radius:14px;
-        margin-top:10px;
-      }
+.hero p{
+  font-size:1rem;
+}
 
-      .dashboard-label{
-        font-size:.75rem;
-      }
-    }
+.hero-dashboard{
+  margin-top:24px;
+}
+
+.hero-dashboard img{
+  max-width:100%;
+  border-radius:14px;
+  margin-top:8px;
+}
+
+.dashboard-label{
+  font-size:.75rem;
+}
+}
   </style>
 </head>
 <body>
@@ -506,28 +499,21 @@
     <section class="hero" id="inicio">
       <div class="container hero-box">
         <div class="eyebrow">Dashboards, KPIs y control para empresas industriales</div>
-
-        <h1>Convierte tus datos operativos en control real de producción e inventarios</h1>
-
+    
+        <h1>Convierte tus datos operativos en decisiones más claras y control real</h1>
+    
         <p>
-          Diseñamos dashboards ejecutivos que integran información de producción, inventarios y desempeño operativo
-          para apoyar decisiones rápidas y mejorar el control de la operación.
+          Dashboards ejecutivos para producción, inventarios y desempeño operativo,
+          diseñados para supervisión, jefatura y gerencia.
         </p>
-
+    
         <div class="hero-actions">
           <a href="https://wa.me/56984391753" target="_blank" class="btn btn-primary">Solicitar reunión</a>
           <a href="#servicios" class="btn btn-secondary">Ver servicios</a>
         </div>
-
-        <div class="hero-points">
-          <span>Dashboards ejecutivos</span>
-          <span>Control de producción</span>
-          <span>Inventarios y KPIs</span>
-          <span>Power BI y gestión industrial</span>
-        </div>
-
+    
         <div class="hero-dashboard">
-          <div class="dashboard-label">Ejemplo de dashboard ejecutivo de producción</div>
+          <div class="dashboard-label">Ejemplo de dashboard ejecutivo Prodintel</div>
           <img
             src="dashboard-demo-prodintel.png"
             alt="Dashboard de gestión industrial Prodintel"
