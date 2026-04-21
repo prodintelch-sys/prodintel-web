@@ -9,6 +9,19 @@
     content="Prodintel ayuda a empresas industriales a mejorar producción, inventarios y toma de decisiones mediante dashboards ejecutivos, KPIs y control de gestión."
   />
   <style>
+   .hero-dashboard{
+margin-top:40px;
+display:flex;
+justify-content:center;
+}
+
+.hero-dashboard img{
+width:100%;
+max-width:1000px;
+border-radius:22px;
+box-shadow:0 40px 80px rgba(0,0,0,.55);
+border:1px solid rgba(255,255,255,.08);
+} 
     :root{
       --bg:#08111d;
       --bg-soft:#0d1828;
@@ -388,30 +401,38 @@
       font-size:.9rem;
     }
 
-    @media (max-width: 920px){
-      .grid-3,
-      .value-box{
-        grid-template-columns:1fr;
-      }
+   @media (max-width: 920px){
 
-      .menu{
-        display:none;
-      }
+  .grid-3,
+  .value-box{
+    grid-template-columns:1fr;
+  }
 
-      body{
-        background-size:cover;
-        background-position:center top;
-        background-attachment:scroll;
-      }
+  .menu{
+    display:none;
+  }
 
-      .hero{
-        min-height:auto;
-      }
+  body{
+    background-size:cover;
+    background-position:center top;
+    background-attachment:scroll;
+  }
 
-      .hero-box{
-        padding:70px 0 30px;
-      }
-    }
+  .hero{
+    min-height:auto;
+  }
+
+  .hero-box{
+    padding:70px 0 30px;
+  }
+
+  .hero-dashboard img{
+    max-width:100%;
+    border-radius:14px;
+    margin-top:20px;
+  }
+
+}
   </style>
 </head>
 <body>
@@ -469,6 +490,10 @@
         </p>
 
         <div class="hero-actions">
+        <img src="dashboard-demo-prodintel.png"
+         alt="Dashboard de gestión industrial Prodintel">
+
+</div>  
           <a href="https://wa.me/56984391753" target="_blank" class="btn btn-primary">Solicitar reunión</a>
           <a href="#servicios" class="btn btn-secondary">Ver servicios</a>
         </div>
