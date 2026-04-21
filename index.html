@@ -246,7 +246,71 @@
       grid-template-columns:repeat(3,1fr);
       gap:20px;
     }
+    .services-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:22px;
+}
 
+.service-card{
+  background:linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.045));
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:26px;
+  padding:28px;
+  box-shadow:0 24px 60px rgba(0,0,0,.35);
+  backdrop-filter:blur(10px);
+  transition:.3s ease;
+}
+
+.service-card:hover{
+  transform:translateY(-6px);
+  border-color:rgba(113,217,255,.25);
+  box-shadow:0 34px 80px rgba(0,0,0,.42);
+}
+
+.service-card.featured{
+  background:linear-gradient(180deg, rgba(57,167,255,.12), rgba(255,255,255,.05));
+  border-color:rgba(113,217,255,.22);
+}
+
+.service-icon{
+  width:58px;
+  height:58px;
+  border-radius:18px;
+  display:grid;
+  place-items:center;
+  margin-bottom:18px;
+  font-size:26px;
+  background:linear-gradient(135deg, rgba(57,167,255,.20), rgba(24,195,126,.18));
+}
+
+.service-card h3{
+  margin:0 0 12px;
+  font-size:1.14rem;
+}
+
+.service-card p{
+  margin:0 0 18px;
+  color:var(--muted);
+  line-height:1.7;
+}
+
+.service-card ul{
+  list-style:none;
+  padding:0;
+  margin:0;
+  display:grid;
+  gap:10px;
+}
+
+.service-card li{
+  padding:10px 12px;
+  border-radius:14px;
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.06);
+  color:#d8e6f4;
+  font-size:.93rem;
+}
     .card{
       background:var(--card);
       border:1px solid var(--card-border);
@@ -413,6 +477,9 @@
       .grid-3,
       .value-box{
         grid-template-columns:1fr;
+        .services-grid{
+       grid-template-columns:1fr;
+}
       }
 
       .menu{
@@ -527,33 +594,48 @@
         <div class="section-head">
           <h2>Servicios principales</h2>
           <p>
-            Una propuesta clara y enfocada en lo que realmente ayuda a gestionar mejor una operación industrial.
+            Soluciones visuales y accionables para mejorar el control operativo, ordenar la información y apoyar decisiones más rápidas.
           </p>
         </div>
-
-        <div class="grid-3">
-          <article class="card">
-            <div class="icon">📊</div>
+    
+        <div class="services-grid">
+          <article class="service-card">
+            <div class="service-icon">📊</div>
             <h3>Dashboards ejecutivos</h3>
             <p>
-              Diseñamos paneles visuales para monitorear producción, costos, cumplimiento y desempeño con claridad.
+              Diseñamos paneles claros para visualizar producción, costos, inventarios y desempeño en una sola vista.
             </p>
+            <ul>
+              <li>KPIs operativos y ejecutivos</li>
+              <li>Visualización clara para gerencia</li>
+              <li>Diseño limpio y profesional</li>
+            </ul>
           </article>
-
-          <article class="card">
-            <div class="icon">🏭</div>
+    
+          <article class="service-card featured">
+            <div class="service-icon">🏭</div>
             <h3>Control de producción</h3>
             <p>
-              Seguimiento de indicadores operativos, eficiencia, OEE, cumplimiento del plan y foco en gestión diaria.
+              Seguimiento de eficiencia, OEE, cumplimiento del plan y foco en los indicadores que realmente mueven la operación.
             </p>
+            <ul>
+              <li>Producción diaria y mensual</li>
+              <li>OEE, eficiencia y cumplimiento</li>
+              <li>Soporte visual para supervisión</li>
+            </ul>
           </article>
-
-          <article class="card">
-            <div class="icon">📦</div>
+    
+          <article class="service-card">
+            <div class="service-icon">📦</div>
             <h3>Inventarios y KPIs</h3>
             <p>
-              Visualización de stock, cobertura, productos críticos e indicadores clave para tomar decisiones a tiempo.
+              Indicadores para controlar stock, cobertura, productos críticos y variables clave para decidir con anticipación.
             </p>
+            <ul>
+              <li>Cobertura e inventario crítico</li>
+              <li>Apoyo a planificación y abastecimiento</li>
+              <li>Menos improvisación operativa</li>
+            </ul>
           </article>
         </div>
       </div>
