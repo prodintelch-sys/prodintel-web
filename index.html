@@ -40,6 +40,20 @@
       background-attachment:fixed;
       background-color:var(--bg);
     }
+    .hero-title{
+  font-size:clamp(3.2rem, 5vw, 5.6rem);
+  line-height:1.04;
+  letter-spacing:-2px;
+  font-weight:800;
+  max-width:620px;
+}
+
+.hero-title .accent{
+  display:block;
+  background:linear-gradient(90deg,#3ba7ff,#7fd0ff);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
 
     .container{
       width:min(calc(100% - 32px), var(--max));
@@ -715,7 +729,11 @@
         <div class="hero-copy">
           <div class="eyebrow">Dashboards, KPIs y control para empresas industriales</div>
     
-          <h1>Visibilidad absoluta para decisiones que impulsan tu producción</h1>
+         <h1 class="hero-title">
+Visibilidad absoluta para
+<span class="accent">decisiones que impulsan</span>
+tu producción
+</h1>
     
           <p>
             Dashboards ejecutivos para producción, inventarios y desempeño operativo,
