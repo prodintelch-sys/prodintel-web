@@ -23,213 +23,7 @@
       --radius:22px;
       --shadow:0 18px 50px rgba(0,0,0,.35);
     }
-   .mobile-dashboard{
 
-padding:90px 0;
-
-}
-.fade-up:nth-child(1){transition-delay:.15s;}
-.fade-up:nth-child(2){transition-delay:.35s;}
-.fade-up:nth-child(3){transition-delay:.55s;}
-.fade-up:nth-child(4){transition-delay:.75s;}
-.fade-up:nth-child(5){transition-delay:.95s;}    
-.fade-up{
-
-opacity:0;
-
-transform:translateY(80px);
-
-transition:
-opacity 2.2s cubic-bezier(.22,.61,.36,1),
-transform 2.2s cubic-bezier(.22,.61,.36,1);
-
-}
-
-.fade-up.show{
-
-opacity:1;
-
-transform:translateY(0);
-
-}
-.timeline{
-
-position:relative;
-max-width:760px;
-margin:auto;
-display:flex;
-flex-direction:column;
-gap:32px;
-
-}
-
-.timeline::before{
-
-content:"";
-position:absolute;
-left:26px;
-top:0;
-bottom:0;
-width:2px;
-
-background:linear-gradient(
-180deg,
-rgba(57,167,255,.4),
-rgba(113,217,255,.2)
-);
-
-}
-
-.timeline-item{
-
-display:flex;
-gap:20px;
-align-items:flex-start;
-position:relative;
-
-}
-
-.timeline-icon{
-
-min-width:52px;
-height:52px;
-
-display:flex;
-align-items:center;
-justify-content:center;
-
-border-radius:16px;
-
-background:linear-gradient(
-135deg,
-rgba(57,167,255,.18),
-rgba(24,195,126,.18)
-);
-
-font-size:24px;
-
-box-shadow:0 10px 30px rgba(0,0,0,.3);
-
-z-index:2;
-
-}
-
-.timeline-content{
-
-background:rgba(255,255,255,.05);
-
-border:1px solid rgba(255,255,255,.08);
-
-padding:22px;
-
-border-radius:18px;
-
-backdrop-filter:blur(8px);
-
-flex:1;
-
-}
-
-.timeline-content h3{
-
-margin-bottom:10px;
-
-}
-
-.timeline-content p{
-
-color:var(--muted);
-margin-bottom:14px;
-
-}
-
-.timeline-content ul{
-
-list-style:none;
-padding:0;
-margin:0;
-display:grid;
-gap:8px;
-
-}
-
-.timeline-content li{
-
-padding:8px 12px;
-
-border-radius:10px;
-
-background:rgba(255,255,255,.04);
-
-border:1px solid rgba(255,255,255,.05);
-
-font-size:.9rem;
-
-}
-.mobile-grid{
-
-display:grid;
-grid-template-columns:1fr 1fr;
-align-items:center;
-gap:40px;
-
-}
-
-.mobile-text h2{
-
-font-size:clamp(1.8rem,4vw,2.6rem);
-margin-bottom:18px;
-
-}
-
-.mobile-text p{
-
-color:var(--muted);
-line-height:1.7;
-margin-bottom:20px;
-
-}
-
-.mobile-benefits{
-
-list-style:none;
-padding:0;
-margin:0;
-display:grid;
-gap:12px;
-
-}
-
-.mobile-benefits li{
-
-padding:12px 14px;
-border-radius:14px;
-background:rgba(255,255,255,.04);
-border:1px solid rgba(255,255,255,.08);
-
-}
-
-.mobile-image{
-
-display:flex;
-justify-content:center;
-
-}
-
-.mobile-image img{
-width:100%;
-max-width:260px;
-height:auto;
-display:block;
-margin:auto;
-}
-
-
-.mobile-image img:hover{
-
-transform:translateY(-6px);
-
-}
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
 
@@ -238,7 +32,7 @@ transform:translateY(-6px);
       font-family:Arial, Helvetica, sans-serif;
       color:var(--text);
       background:
-        linear-gradient(rgba(6,14,24,.65), rgba(11,22,38,.85)),
+        linear-gradient(rgba(6,14,24,.88), rgba(11,22,38,.95)),
         url("dashboard-bg.png");
       background-size:cover;
       background-position:center top;
@@ -255,7 +49,7 @@ transform:translateY(-6px);
     .topbar{
       position:sticky;
       top:0;
-      z-index:20;
+      z-index:30;
       backdrop-filter:blur(12px);
       background:rgba(8,17,29,.72);
       border-bottom:1px solid rgba(255,255,255,.08);
@@ -342,88 +136,95 @@ transform:translateY(-6px);
       color:var(--text);
     }
 
+    .fade-up{
+      opacity:0;
+      transform:translateY(80px);
+      transition:
+        opacity 2.2s cubic-bezier(.22,.61,.36,1),
+        transform 2.2s cubic-bezier(.22,.61,.36,1);
+    }
+
+    .fade-up.show{
+      opacity:1;
+      transform:translateY(0);
+    }
+
     .hero{
-min-height:78vh;
-display:flex;
-align-items:flex-start;
-text-align:center;
-padding-top:120px;
+  padding:70px 0 40px;
 }
 
-.hero-box{
-max-width:1080px;
-margin:0 auto;
-padding:20px 0 40px;
+.hero-layout{
+  display:grid;
+  grid-template-columns: 1fr 1.15fr;
+  align-items:center;
+  gap:42px;
+  min-height:78vh;
 }
 
-.eyebrow{
+.hero-copy{
+  text-align:left;
+  max-width:620px;
+}
+
+.hero-copy .eyebrow{
   display:inline-flex;
-  padding:10px 15px;
+  padding:10px 16px;
   border-radius:999px;
   background:rgba(57,167,255,.12);
-  border:1px solid rgba(57,167,255,.2);
+  border:1px solid rgba(57,167,255,.22);
   color:#dcefff;
   font-size:.88rem;
-  margin-bottom:20px;
+  margin-bottom:18px;
 }
 
-.hero h1{
-  margin:0 auto 18px;
-  max-width:920px;
-  font-size:clamp(2.8rem, 6vw, 5.3rem);
-  line-height:1.0;
-  letter-spacing:-1.9px;
+.hero-copy h1{
+  margin:0 0 18px;
+  font-size:clamp(2.8rem, 5vw, 5.2rem);
+  line-height:1.02;
+  letter-spacing:-1.8px;
 }
 
-.hero p{
-  margin:0 auto 28px;
-  max-width:760px;
-  font-size:1.08rem;
+.hero-copy p{
+  margin:0 0 28px;
+  max-width:560px;
+  font-size:1.06rem;
   line-height:1.75;
   color:var(--muted);
 }
 
 .hero-actions{
   display:flex;
-  justify-content:center;
   gap:14px;
   flex-wrap:wrap;
-  margin-bottom:34px;
 }
 
-.hero-dashboard{
-  margin-top:6px;
+.hero-media{
+  position:relative;
   display:flex;
-  flex-direction:column;
+  justify-content:center;
   align-items:center;
-  gap:16px;
+  min-height:620px;
 }
 
-.dashboard-label{
-  font-size:.84rem;
-  letter-spacing:.3px;
-  padding:8px 14px;
-  border-radius:999px;
-  background:rgba(255,255,255,.05);
-  border:1px solid rgba(255,255,255,.1);
-  color:#dcefff;
-}
-
-.hero-dashboard img{
+.hero-laptop{
   width:100%;
-  max-width:1020px;
-  border-radius:24px;
+  max-width:880px;
+  border-radius:26px;
   box-shadow:
-    0 45px 120px rgba(0,0,0,.60),
+    0 40px 100px rgba(0,0,0,.55),
     0 0 0 1px rgba(255,255,255,.08);
-  transition:.35s ease;
 }
 
-.hero-dashboard img:hover{
-  transform:translateY(-5px);
+.hero-phone{
+  position:absolute;
+  left:-10px;
+  bottom:10px;
+  width:165px;
+  border-radius:26px;
   box-shadow:
-    0 65px 140px rgba(0,0,0,.72),
-    0 0 0 1px rgba(255,255,255,.12);
+    0 35px 80px rgba(0,0,0,.55),
+    0 0 0 1px rgba(255,255,255,.08);
+  z-index:3;
 }
 
     section{
@@ -448,105 +249,196 @@ padding:20px 0 40px;
       line-height:1.7;
     }
 
-    .grid-3{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
+    .timeline{
+      position:relative;
+      max-width:760px;
+      margin:auto;
+      display:flex;
+      flex-direction:column;
+      gap:32px;
+    }
+
+    .timeline::before{
+      content:"";
+      position:absolute;
+      left:26px;
+      top:0;
+      bottom:0;
+      width:2px;
+      background:linear-gradient(
+        180deg,
+        rgba(57,167,255,.4),
+        rgba(113,217,255,.2)
+      );
+    }
+
+    .timeline-item{
+      display:flex;
       gap:20px;
-    }
-    .services-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:22px;
-}
-
-.service-card{
-  background:linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.045));
-  border:1px solid rgba(255,255,255,.12);
-  border-radius:26px;
-  padding:28px;
-  box-shadow:0 24px 60px rgba(0,0,0,.35);
-  backdrop-filter:blur(10px);
-  transition:.3s ease;
-}
-
-.service-card:hover{
-  transform:translateY(-6px);
-  border-color:rgba(113,217,255,.25);
-  box-shadow:0 34px 80px rgba(0,0,0,.42);
-}
-
-.service-card.featured{
-  background:linear-gradient(180deg, rgba(57,167,255,.12), rgba(255,255,255,.05));
-  border-color:rgba(113,217,255,.22);
-}
-
-.service-icon{
-  width:58px;
-  height:58px;
-  border-radius:18px;
-  display:grid;
-  place-items:center;
-  margin-bottom:18px;
-  font-size:26px;
-  background:linear-gradient(135deg, rgba(57,167,255,.20), rgba(24,195,126,.18));
-}
-
-.service-card h3{
-  margin:0 0 12px;
-  font-size:1.14rem;
-}
-
-.service-card p{
-  margin:0 0 18px;
-  color:var(--muted);
-  line-height:1.7;
-}
-
-.service-card ul{
-  list-style:none;
-  padding:0;
-  margin:0;
-  display:grid;
-  gap:10px;
-}
-
-.service-card li{
-  padding:10px 12px;
-  border-radius:14px;
-  background:rgba(255,255,255,.04);
-  border:1px solid rgba(255,255,255,.06);
-  color:#d8e6f4;
-  font-size:.93rem;
-}
-    .card{
-      background:var(--card);
-      border:1px solid var(--card-border);
-      border-radius:var(--radius);
-      padding:26px;
-      box-shadow:var(--shadow);
-      backdrop-filter:blur(10px);
+      align-items:flex-start;
+      position:relative;
     }
 
-    .icon{
-      width:54px;
-      height:54px;
+    .timeline-icon{
+      min-width:52px;
+      height:52px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
       border-radius:16px;
-      display:grid;
-      place-items:center;
-      margin-bottom:16px;
+      background:linear-gradient(
+        135deg,
+        rgba(57,167,255,.18),
+        rgba(24,195,126,.18)
+      );
       font-size:24px;
-      background:linear-gradient(135deg, rgba(57,167,255,.18), rgba(24,195,126,.2));
+      box-shadow:0 10px 30px rgba(0,0,0,.3);
+      z-index:2;
     }
 
-    .card h3{
+    .timeline-content{
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.08);
+      padding:22px;
+      border-radius:18px;
+      backdrop-filter:blur(8px);
+      flex:1;
+    }
+
+    .timeline-content h3{
       margin:0 0 10px;
-      font-size:1.08rem;
     }
 
-    .card p{
-      margin:0;
+    .timeline-content p{
       color:var(--muted);
-      line-height:1.65;
+      margin:0 0 14px;
+      line-height:1.7;
+    }
+
+    .timeline-content ul{
+      list-style:none;
+      padding:0;
+      margin:0;
+      display:grid;
+      gap:8px;
+    }
+
+    .timeline-content li{
+      padding:8px 12px;
+      border-radius:10px;
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.05);
+      font-size:.9rem;
+    }
+
+    .kpi-section{
+      padding:90px 0;
+    }
+
+    .kpi-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:22px;
+      margin-top:20px;
+    }
+
+    .kpi-card{
+      background:linear-gradient(
+        180deg,
+        rgba(255,255,255,.06),
+        rgba(255,255,255,.03)
+      );
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:22px;
+      padding:26px;
+      text-align:center;
+      box-shadow:0 18px 50px rgba(0,0,0,.35);
+      transition:.3s ease;
+    }
+
+    .kpi-card:hover{
+      transform:translateY(-6px);
+      border-color:rgba(113,217,255,.3);
+    }
+
+    .kpi-card span{
+      display:block;
+      font-size:.9rem;
+      color:var(--muted);
+      margin-bottom:8px;
+    }
+
+    .kpi-card strong{
+      display:block;
+      font-size:2rem;
+      margin-bottom:12px;
+      color:#71d9ff;
+    }
+
+    .kpi-card p{
+      font-size:.9rem;
+      color:var(--muted);
+      line-height:1.6;
+      margin:0;
+    }
+
+    .mobile-dashboard{
+      padding:90px 0;
+    }
+
+    .mobile-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      align-items:center;
+      gap:40px;
+    }
+
+    .mobile-text h2{
+      font-size:clamp(1.8rem,4vw,2.6rem);
+      margin:0 0 18px;
+    }
+
+    .mobile-text p{
+      color:var(--muted);
+      line-height:1.7;
+      margin:0 0 20px;
+    }
+
+    .mobile-benefits{
+      list-style:none;
+      padding:0;
+      margin:0;
+      display:grid;
+      gap:12px;
+    }
+
+    .mobile-benefits li{
+      padding:12px 14px;
+      border-radius:14px;
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.08);
+    }
+
+    .mobile-image{
+      display:flex;
+      justify-content:center;
+    }
+
+    .mobile-image img{
+      width:100%;
+      max-width:260px;
+      height:auto;
+      display:block;
+      margin:auto;
+      border-radius:28px;
+      box-shadow:
+        0 40px 100px rgba(0,0,0,.6),
+        0 0 0 1px rgba(255,255,255,.08);
+      transition:.35s ease;
+    }
+
+    .mobile-image img:hover{
+      transform:translateY(-6px);
     }
 
     .value-box{
@@ -681,44 +573,6 @@ padding:20px 0 40px;
     }
 
     @media (max-width: 920px){
-      .grid-3,
-      .value-box{
-        grid-template-columns:1fr;
-        .services-grid{
-       grid-template-columns:1fr;
-       .mobile-grid{
-
-grid-template-columns:1fr;
-text-align:center;
-.timeline{
-
-gap:26px;
-
-}
-
-.timeline::before{
-
-left:22px;
-
-}
-
-.timeline-icon{
-
-width:44px;
-height:44px;
-font-size:20px;
-
-}
-}
-
-.mobile-image img{
-
-max-width:220px;
-
-}
-}
-      }
-
       .menu{
         display:none;
       }
@@ -730,36 +584,94 @@ max-width:220px;
       }
 
       .hero{
+  padding:52px 0 24px;
+}
+
+.hero-layout{
+  grid-template-columns:1fr;
+  gap:26px;
   min-height:auto;
 }
 
-.hero-box{
-  padding:60px 0 24px;
-}
-
-.hero h1{
-  font-size:clamp(2.2rem, 8vw, 3.3rem);
-  line-height:1.06;
-}
-
-.hero p{
-  font-size:1rem;
-}
-
-.hero-dashboard{
-  margin-top:24px;
-}
-
-.hero-dashboard img{
+.hero-copy{
+  text-align:center;
   max-width:100%;
-  border-radius:14px;
-  margin-top:8px;
 }
 
-.dashboard-label{
-  font-size:.75rem;
+.hero-copy p{
+  margin-left:auto;
+  margin-right:auto;
 }
+
+.hero-actions{
+  justify-content:center;
 }
+
+.hero-media{
+  min-height:auto;
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+}
+
+.hero-laptop{
+  max-width:100%;
+  border-radius:16px;
+}
+
+.hero-phone{
+  position:relative;
+  left:auto;
+  bottom:auto;
+  width:165px;
+}
+      .timeline{
+        gap:26px;
+      }
+
+      .timeline::before{
+        left:22px;
+      }
+
+      .timeline-icon{
+        width:44px;
+        height:44px;
+        min-width:44px;
+        font-size:20px;
+      }
+
+      .kpi-grid{
+        grid-template-columns:1fr 1fr;
+        gap:14px;
+      }
+
+      .kpi-card{
+        padding:18px;
+      }
+
+      .kpi-card strong{
+        font-size:1.5rem;
+      }
+
+      .mobile-grid{
+        grid-template-columns:1fr;
+        gap:30px;
+        text-align:center;
+      }
+
+      .mobile-image{
+        order:-1;
+      }
+
+      .mobile-image img{
+        max-width:190px;
+      }
+
+      .grid-3,
+      .value-box{
+        grid-template-columns:1fr;
+      }
+    }
   </style>
 </head>
 <body>
@@ -778,11 +690,9 @@ max-width:220px;
         <a href="#servicios">Servicios</a>
         <a href="#valor">Beneficios</a>
         <a href="#contacto">Contacto</a>
-
         <a href="https://www.linkedin.com/company/prodintelch/"
            target="_blank"
            style="display:flex;align-items:center;gap:6px;">
-
           <svg xmlns="http://www.w3.org/2000/svg"
                width="18"
                height="18"
@@ -790,7 +700,6 @@ max-width:220px;
                viewBox="0 0 24 24">
             <path d="M20.447 20.452H16.89v-5.569c0-1.328-.027-3.036-1.849-3.036-1.851 0-2.135 1.445-2.135 2.939v5.666H9.348V9h3.414v1.561h.049c.476-.9 1.637-1.849 3.37-1.849 3.601 0 4.267 2.37 4.267 5.455v6.285zM5.337 7.433c-1.099 0-1.99-.891-1.99-1.99 0-1.099.891-1.99 1.99-1.99 1.099 0 1.99.891 1.99 1.99 0 1.099-.891 1.99-1.99 1.99zM6.999 20.452H3.675V9h3.324v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.728v20.545C0 23.226.792 24 1.771 24h20.451C23.2 24 24 23.226 24 22.273V1.728C24 .774 23.2 0 22.222 0h.003z"/>
           </svg>
-
           LinkedIn
         </a>
       </nav>
@@ -801,158 +710,148 @@ max-width:220px;
 
   <main>
     <section class="hero" id="inicio">
-      <div class="container hero-box">
-        <div class="eyebrow">Dashboards, KPIs y control para empresas industriales</div>
+      <div class="container hero-layout">
     
-        <h1>Convierte tus datos operativos en decisiones más claras y control real</h1>
+        <div class="hero-copy">
+          <div class="eyebrow">Dashboards, KPIs y control para empresas industriales</div>
     
-        <p>
-          Dashboards ejecutivos para producción, inventarios y desempeño operativo,
-          diseñados para supervisión, jefatura y gerencia.
-        </p>
+          <h1>Convierte tus datos operativos en decisiones más claras y control real</h1>
     
-        <div class="hero-actions">
-          <a href="https://wa.me/56984391753" target="_blank" class="btn btn-primary">Solicitar reunión</a>
-          <a href="#servicios" class="btn btn-secondary">Ver servicios</a>
+          <p>
+            Dashboards ejecutivos para producción, inventarios y desempeño operativo,
+            diseñados para supervisión, jefatura y gerencia.
+          </p>
+    
+          <div class="hero-actions">
+            <a href="https://wa.me/56984391753" target="_blank" class="btn btn-primary">Solicitar reunión</a>
+            <a href="#servicios" class="btn btn-secondary">Ver servicios</a>
+          </div>
         </div>
     
-        <div class="hero-dashboard fade-up">
-          <div class="dashboard-label">Ejemplo de dashboard ejecutivo Prodintel</div>
-          <img
-            src="dashboard-demo-prodintel.png"
-            alt="Dashboard de gestión industrial Prodintel"
-          />
+        <div class="hero-media fade-up">
+          <img class="hero-laptop" src="dashboard-demo-prodintel.png" alt="Dashboard ejecutivo Prodintel">
+      
+        </div>
+    
+      </div>
+    </section>  
+
+    <section id="servicios">
+      <div class="container">
+        <div class="section-head">
+          <h2>Servicios principales</h2>
+          <p>
+            Soluciones claras para mejorar control operativo, producción e inventarios con dashboards ejecutivos.
+          </p>
+        </div>
+
+        <div class="timeline fade-up">
+          <div class="timeline-item">
+            <div class="timeline-icon">📊</div>
+            <div class="timeline-content">
+              <h3>Dashboards ejecutivos</h3>
+              <p>
+                Paneles visuales para monitorear producción, inventarios, cumplimiento y desempeño en tiempo real.
+              </p>
+              <ul>
+                <li>KPIs operativos y ejecutivos</li>
+                <li>Visualización clara para gerencia</li>
+                <li>Integración con ERP o Excel</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-icon">🏭</div>
+            <div class="timeline-content">
+              <h3>Control de producción</h3>
+              <p>
+                Seguimiento de eficiencia, OEE y cumplimiento del plan con indicadores accionables.
+              </p>
+              <ul>
+                <li>Producción diaria y mensual</li>
+                <li>Seguimiento de eficiencia</li>
+                <li>Apoyo a supervisión operativa</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-icon">📦</div>
+            <div class="timeline-content">
+              <h3>Inventarios y KPIs</h3>
+              <p>
+                Indicadores para controlar stock, cobertura e identificar productos críticos rápidamente.
+              </p>
+              <ul>
+                <li>Control de cobertura</li>
+                <li>Stock crítico</li>
+                <li>Apoyo a planificación</li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     </section>
-    <section class="mobile-dashboard fade-up">
 
-      <div class="container mobile-grid">
-      
-      <div class="mobile-text">
-      
-      <h2>Controla tu operación también desde el celular</h2>
-      
-      <p>
-      Accede a indicadores de producción, inventarios y desempeño operativo desde cualquier lugar.
-      Los dashboards están optimizados para visualización en dispositivos móviles.
-      </p>
-      
-      <ul class="mobile-benefits">
-      
-      <li>Indicadores disponibles en tiempo real</li>
-      <li>Seguimiento desde supervisión y gerencia</li>
-      <li>Visualización clara fuera de planta</li>
-      
-      </ul>
-      
-      </div>
-      
-      <div class="mobile-image">
-      
-      <img src="dashboard-mobile.png"
-      alt="Dashboard Prodintel en celular">
-      
-      </div>
-      
-      </div>
-      
-      </section>
-      <section id="servicios">
-
-        <div class="container">
-        
+    <section class="kpi-section">
+      <div class="container">
         <div class="section-head">
-        
-        <h2>Servicios principales</h2>
-        
-        <p>
-        Soluciones claras para mejorar control operativo, producción e inventarios con dashboards ejecutivos.
-        </p>
-        
+          <h2>Indicadores que implementamos en planta</h2>
+          <p>
+            Ejemplos reales de KPIs que integramos en dashboards ejecutivos para apoyar decisiones operativas.
+          </p>
         </div>
-        
-        <div class="timeline fade-up">
-        
-        <div class="timeline-item">
-        
-        <div class="timeline-icon">📊</div>
-        
-        <div class="timeline-content">
-        
-        <h3>Dashboards ejecutivos</h3>
-        
-        <p>
-        Paneles visuales para monitorear producción, inventarios, cumplimiento y desempeño en tiempo real.
-        </p>
-        
-        <ul>
-        
-        <li>KPIs operativos y ejecutivos</li>
-        <li>Visualización clara para gerencia</li>
-        <li>Integración con ERP o Excel</li>
-        
-        </ul>
-        
+
+        <div class="kpi-grid fade-up">
+          <div class="kpi-card">
+            <span>OEE</span>
+            <strong>+15%</strong>
+            <p>Mejora en visibilidad de eficiencia productiva mediante seguimiento diario.</p>
+          </div>
+
+          <div class="kpi-card">
+            <span>Cobertura inventario</span>
+            <strong>15 días</strong>
+            <p>Control automático de stock crítico y cobertura objetivo por producto.</p>
+          </div>
+
+          <div class="kpi-card">
+            <span>OTIF</span>
+            <strong>92%</strong>
+            <p>Seguimiento de cumplimiento de despachos y entregas a tiempo.</p>
+          </div>
+
+          <div class="kpi-card">
+            <span>Producción diaria</span>
+            <strong>Tiempo real</strong>
+            <p>Comparación plan vs real para supervisión operativa inmediata.</p>
+          </div>
         </div>
-        
+      </div>
+    </section>
+
+    <section class="mobile-dashboard fade-up">
+      <div class="container mobile-grid">
+        <div class="mobile-text">
+          <h2>Controla tu operación también desde el celular</h2>
+          <p>
+            Accede a indicadores de producción, inventarios y desempeño operativo desde cualquier lugar.
+            Los dashboards están optimizados para visualización en dispositivos móviles.
+          </p>
+
+          <ul class="mobile-benefits">
+            <li>Indicadores disponibles en tiempo real</li>
+            <li>Seguimiento desde supervisión y gerencia</li>
+            <li>Visualización clara fuera de planta</li>
+          </ul>
         </div>
-        
-        
-        <div class="timeline-item">
-        
-        <div class="timeline-icon">🏭</div>
-        
-        <div class="timeline-content">
-        
-        <h3>Control de producción</h3>
-        
-        <p>
-        Seguimiento de eficiencia, OEE y cumplimiento del plan con indicadores accionables.
-        </p>
-        
-        <ul>
-        
-        <li>Producción diaria y mensual</li>
-        <li>Seguimiento de eficiencia</li>
-        <li>Apoyo a supervisión operativa</li>
-        
-        </ul>
-        
+
+        <div class="mobile-image">
+          <img src="dashboard-mobile.png" alt="Dashboard Prodintel en celular">
         </div>
-        
-        </div>
-        
-        
-        <div class="timeline-item">
-        
-        <div class="timeline-icon">📦</div>
-        
-        <div class="timeline-content">
-        
-        <h3>Inventarios y KPIs</h3>
-        
-        <p>
-        Indicadores para controlar stock, cobertura e identificar productos críticos rápidamente.
-        </p>
-        
-        <ul>
-        
-        <li>Control de cobertura</li>
-        <li>Stock crítico</li>
-        <li>Apoyo a planificación</li>
-        
-        </ul>
-        
-        </div>
-        
-        </div>
-        
-        </div>
-        
-        </div>
-        
-        </section>
+      </div>
+    </section>
 
     <section id="valor">
       <div class="container">
@@ -1041,28 +940,24 @@ max-width:220px;
   </footer>
 
   <a class="whatsapp-float" href="https://wa.me/56984391753" target="_blank">WhatsApp</a>
-  <script>
 
+  <script>
     const observer = new IntersectionObserver(entries => {
-    
-    entries.forEach(entry => {
-    
-    if(entry.isIntersecting){
-    
-    entry.target.classList.add("show");
-    
-    }
-    
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          setTimeout(() => {
+            entry.target.classList.add("show");
+          }, 250);
+        }
+      });
+    }, {
+      threshold:0.18
     });
-    
-    });
-    
+
     document.querySelectorAll(".fade-up").forEach(el => {
-    
-    observer.observe(el);
-    
+      observer.observe(el);
     });
-    
-    </script>
+  </script>
+
 </body>
 </html>
