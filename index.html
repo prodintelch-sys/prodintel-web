@@ -28,6 +28,23 @@
 padding:90px 0;
 
 }
+.fade-up{
+
+opacity:0;
+
+transform:translateY(40px);
+
+transition:all .9s ease;
+
+}
+
+.fade-up.show{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
 .timeline{
 
 position:relative;
@@ -791,7 +808,7 @@ max-width:220px;
           <a href="#servicios" class="btn btn-secondary">Ver servicios</a>
         </div>
     
-        <div class="hero-dashboard">
+        <div class="hero-dashboard fade-up">
           <div class="dashboard-label">Ejemplo de dashboard ejecutivo Prodintel</div>
           <img
             src="dashboard-demo-prodintel.png"
@@ -800,7 +817,7 @@ max-width:220px;
         </div>
       </div>
     </section>
-    <section class="mobile-dashboard">
+    <section class="mobile-dashboard fade-up">
 
       <div class="container mobile-grid">
       
@@ -847,7 +864,7 @@ max-width:220px;
         
         </div>
         
-        <div class="timeline">
+        <div class="timeline fade-up">
         
         <div class="timeline-item">
         
@@ -1016,6 +1033,28 @@ max-width:220px;
   </footer>
 
   <a class="whatsapp-float" href="https://wa.me/56984391753" target="_blank">WhatsApp</a>
+  <script>
 
+    const observer = new IntersectionObserver(entries => {
+    
+    entries.forEach(entry => {
+    
+    if(entry.isIntersecting){
+    
+    entry.target.classList.add("show");
+    
+    }
+    
+    });
+    
+    });
+    
+    document.querySelectorAll(".fade-up").forEach(el => {
+    
+    observer.observe(el);
+    
+    });
+    
+    </script>
 </body>
 </html>
