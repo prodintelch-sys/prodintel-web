@@ -8,7 +8,7 @@ if (whatsappLauncher) {
   panel.hidden = true;
   panel.innerHTML = `
     <header class="chat-head">
-      <span class="chat-avatar"><svg aria-hidden="true"><use href="#i-message"></use></svg></span>
+      <span class="chat-avatar"><img src="assets/ferretpilot/chat-robot-transparent.png" alt="" width="1254" height="1254"></span>
       <span><strong>ProdIntel</strong><small><i></i> Disponible por WhatsApp</small></span>
       <button class="chat-close" type="button" aria-label="Cerrar chat">×</button>
     </header>
