@@ -44,7 +44,7 @@
   height: 50px;
   padding: 0;
   border-radius: 15px;
-  background: #fff url("assets/ferretpilot/chat-robot-transparent.png") center/cover no-repeat;
+  background: #fff url("/assets/ferretpilot/chat-robot-transparent.png") center/cover no-repeat;
   color: transparent;
   filter: drop-shadow(0 9px 14px rgba(8, 169, 80, .28));
 }
