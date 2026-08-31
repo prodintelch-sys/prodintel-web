@@ -14,12 +14,14 @@ productsTrigger?.addEventListener('click',event=>{
   event.stopPropagation();
   const open=productsMenu.classList.toggle('open');
   productsTrigger.setAttribute('aria-expanded',String(open));
+  document.body.classList.toggle('products-open',open&&window.innerWidth>1100);
 });
 
 document.addEventListener('click',event=>{
   if(!productsMenu?.contains(event.target)){
     productsMenu?.classList.remove('open');
     productsTrigger?.setAttribute('aria-expanded','false');
+    document.body.classList.remove('products-open');
   }
   if(mainNav?.classList.contains('open')&&!mainNav.contains(event.target)&&!menuButton?.contains(event.target)){
     mainNav.classList.remove('open');
@@ -31,9 +33,12 @@ document.addEventListener('click',event=>{
 
 mainNav?.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>{
   mainNav.classList.remove('open');
+  productsMenu?.classList.remove('open');
   menuButton?.setAttribute('aria-expanded','false');
+  productsTrigger?.setAttribute('aria-expanded','false');
   menuButton?.setAttribute('aria-label','Abrir menú');
   document.body.classList.remove('menu-open');
+  document.body.classList.remove('products-open');
 }));
 
 document.addEventListener('keydown',event=>{
@@ -44,14 +49,17 @@ document.addEventListener('keydown',event=>{
   menuButton?.setAttribute('aria-label','Abrir menú');
   productsTrigger?.setAttribute('aria-expanded','false');
   document.body.classList.remove('menu-open');
+  document.body.classList.remove('products-open');
   menuButton?.focus();
 });
 
 window.addEventListener('resize',()=>{
-  if(window.innerWidth>820){
+  if(window.innerWidth>1100){
     mainNav?.classList.remove('open');
     menuButton?.setAttribute('aria-expanded','false');
     document.body.classList.remove('menu-open');
+  }else{
+    document.body.classList.remove('products-open');
   }
 });
 
